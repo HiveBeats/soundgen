@@ -37,6 +37,9 @@ let getSemitonesByNote (str: string) =
 
     (octave - defaultOctave - 1) * 12 + noteShift
 
+let saturate x =
+    tanh (6. * x)
+
 let toInt16Sample sample = sample |> (*) 32767. |> int16
 
 let freq hz duration =
@@ -62,7 +65,8 @@ let freq hz duration =
                 x
                 |> (*) (2. * System.Math.PI * hz / sampleRate)
                 |> sin
-                |> (*) volume)
+                |> (*) volume
+                )
             samples
 
     let adsrLength = Seq.length output
@@ -73,7 +77,7 @@ let freq hz duration =
     let release = Seq.rev attackArray
 
     Seq.zip3 release attackArray output
-    |> Seq.map (fun (x, y, z) -> (x * y * z))
+    |> Seq.map (fun (x, y, z) -> (x * y * z) |> saturate)
 
 
 let note semitone beats =
