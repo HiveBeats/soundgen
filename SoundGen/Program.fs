@@ -2,7 +2,7 @@
 open System.IO
 
 let sampleRate = 48000.
-let bpm = 128.
+let bpm = 120.
 let beatDuration = 60. / bpm
 let pitchStandard = 440.
 let volume = 0.5
@@ -52,128 +52,45 @@ let note semitone beats =
 let song =
     [
      //
-     note 0 0.25;
-     note 0 0.25;
-     note 0 0.25;
-     note 0 0.25;
-     note 0 0.5
-     note 0 0.25;
-     note 0 0.25;
-     note 0 0.25;
-     note 0 0.25;
-     note 0 0.25
-     note 0 0.25;
-     note 0 0.5;
-     
-     note 5 0.25;
-     note 5 0.25;
-     note 5 0.25;
-     note 5 0.25;
-     note 5 0.25
-     note 5 0.25;
-     note 5 0.5;
-     
-     note 3 0.25;
-     note 3 0.25;
-     note 3 0.25;
-     note 3 0.25;
-     note 3 0.25
-     note 3 0.25;
      note 3 0.5
-     note (-2) 0.5
-     //
-     //
-     note 0 0.25;
-     note 0 0.25;
-     note 0 0.25;
-     note 0 0.25;
-     note 0 0.5
-     note 0 0.25;
-     note 0 0.25;
-     note 0 0.25;
-     note 0 0.25;
-     note 0 0.25
-     note 0 0.25;
-     note 0 0.5;
-     
-     note 5 0.25;
-     note 5 0.25;
-     note 5 0.25;
-     note 5 0.25;
-     note 5 0.25
-     note 5 0.25;
-     note 5 0.5;
-     
-     note 3 0.25;
-     note 3 0.25;
-     note 3 0.25;
-     note 3 0.25;
-     note 3 0.25
-     note 3 0.25;
      note 3 0.5
-     note (-2) 0.5
-     //
-     //
-     note 0 0.25;
-     note 0 0.25;
-     note 0 0.25;
-     note 0 0.25;
-     note 0 0.5
-     note 0 0.25;
-     note 0 0.25;
-     note 0 0.25;
-     note 0 0.25;
-     note 0 0.25
-     note 0 0.25;
-     note 0 0.5;
+     note 15 0.5
+     note 15 0.5
      
-     note 5 0.25;
-     note 5 0.25;
-     note 5 0.25;
-     note 5 0.25;
-     note 5 0.25
-     note 5 0.25;
-     note 5 0.5;
-     
-     note 3 0.25;
-     note 3 0.25;
-     note 3 0.25;
-     note 3 0.25;
-     note 3 0.25
-     note 3 0.25;
+     note 6 0.5
+     note 18 0.5
      note 3 0.5
+     note 15 0.5
+     
+     note (-1) 0.5
+     note (-1) 0.5
+     note 11 0.5
+     note 15 0.5
+     
      note (-2) 0.5
+     note (-2) 0.5
+     note 10 0.5
+     note 15 0.5
      //
-     //
-     note 0 0.25;
-     note 0 0.25;
-     note 0 0.25;
-     note 0 0.25;
-     note 0 0.5
-     note 0 0.25;
-     note 0 0.25;
-     note 0 0.25;
-     note 0 0.25;
-     note 0 0.25
-     note 0 0.25;
-     note 0 0.5;
-     
-     note 5 0.25;
-     note 5 0.25;
-     note 5 0.25;
-     note 5 0.25;
-     note 5 0.25
-     note 5 0.25;
-     note 5 0.5;
-     
-     note 3 0.25;
-     note 3 0.25;
-     note 3 0.25;
-     note 3 0.25;
-     note 3 0.25
-     note 3 0.25;
      note 3 0.5
+     note 3 0.5
+     note 15 0.5
+     note 15 0.5
+     
+     note 6 0.5
+     note 18 0.5
+     note 3 0.5
+     note 15 0.5
+     
+     note (-1) 0.5
+     note (-1) 0.5
+     note 11 0.5
+     note 15 0.5
+     
      note (-2) 0.5
+     note (-2) 0.5
+     note 10 0.5
+     note 15 0.5
      //
      ] |> Seq.concat 
     
