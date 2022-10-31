@@ -9,6 +9,9 @@ type Saturator = { Gain: float }
 
 let saturate (param: Saturator, x: float) = tanh (param.Gain * x)
 
+let sineWaveShape x  =
+    x + 2.8 * sin (2. * x)
+
 //
 // let process(effects:Effect list, sound:float seq) =
 //     let mutable output = sound

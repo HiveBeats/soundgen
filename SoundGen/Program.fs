@@ -1,8 +1,8 @@
-﻿
-open System.IO
+﻿open System.IO
 open SoundGen
 open PCMWave
 open Fx
+open SoundGen.Fx
 open Synth
 
 let song =
@@ -54,6 +54,9 @@ let writeToFile (ms: MemoryStream) =
 
     ms.WriteTo(fs)
 
-song |> createWAV |> writeToFile
-
-
+song
+|> Seq.map (fun x ->
+    let x1 = sineWaveShape x
+    saturate ({ Gain = 1.0 }, x1))
+|> createWAV
+|> writeToFile
