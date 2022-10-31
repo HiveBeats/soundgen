@@ -1,5 +1,6 @@
 module SoundGen.Synth
 open Settings
+open Oscillator
 
 let getHzBySemitones semi =
     pitchStandard * (2. ** (1. / 12.)) ** semi
@@ -52,8 +53,7 @@ let freq hz duration =
         Seq.map
             (fun x ->
                 x
-                |> (*) (2. * System.Math.PI * hz / sampleRate)
-                |> sin
+                |> sinesquareosc hz
                 |> (*) volume
                 )
             samples

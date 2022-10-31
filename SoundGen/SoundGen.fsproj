@@ -7,10 +7,12 @@
 
     <ItemGroup>
         <Compile Include="Settings.fs" />
+        <Compile Include="Oscillator.fs" />
         <Compile Include="Synth.fs" />
         <Compile Include="Fx.fs" />
         <Compile Include="PCMWave.fs" />
         <Compile Include="Program.fs" />
+        
         
         
         
