@@ -9,14 +9,21 @@ type Saturator = { Gain: float }
 
 let saturate (param: Saturator, x: float) = tanh (param.Gain * x)
 
-let sineWaveShape x  =
-    x + 2.8 * sin (2. * x)
+let sineWaveShape gain factor x  =
+    x + gain * sin (factor * x)
 
-//
-// let process(effects:Effect list, sound:float seq) =
-//     let mutable output = sound
-//     effects
-//     |> List.iter((fun eff ->
-//         match eff with
-//         |Saturator -> output <- (output |> Seq.map saturate eff)))
-//     
+let reverb (buffer:float seq) =
+    let delayMilliseconds = 50.; // 500 is half a second
+    let delaySamples = (delayMilliseconds * 48.0) |> int; // assumes 44100 Hz sample rate
+    let decay = 0.5
+    let mutable newBuffer = Array.ofSeq buffer
+    
+    for i in 0..Seq.length buffer do
+        let smpl = newBuffer.[i] * decay
+        if Array.length newBuffer > (i + delaySamples) then
+            newBuffer.[i + delaySamples] <- smpl
+        else newBuffer <- Array.append newBuffer (smpl |> Array.singleton)
+            
+    newBuffer
+
+

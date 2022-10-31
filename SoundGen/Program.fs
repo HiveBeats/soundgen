@@ -55,8 +55,9 @@ let writeToFile (ms: MemoryStream) =
     ms.WriteTo(fs)
 
 song
-|> Seq.map (fun x ->
-    let x1 = sineWaveShape x
-    saturate ({ Gain = 1.0 }, x1))
+// |> Seq.map (fun x ->
+//     let x1 = sineWaveShape 2.8 2. x
+//     saturate ({ Gain = 1.0 }, x1))
+//|> reverb
 |> createWAV
 |> writeToFile
