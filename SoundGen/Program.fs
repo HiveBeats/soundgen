@@ -6,45 +6,130 @@ open SoundGen.Fx
 open Synth
 
 let song =
-    [ note 3 0.5
-      note 3 0.5
-      note 15 0.5
-      note 15 0.5
-
-      note 6 0.5
-      note 18 0.5
-      note 3 0.5
-      note 15 0.5
-
-      note (-1) 0.5
-      note (-1) 0.5
-      note 11 0.5
-      note 15 0.5
-
-      note (-2) 0.5
-      note (-2) 0.5
-      note 10 0.5
-      note 15 0.5
-      //
-      note 3 0.5
-      note 3 0.5
-      note 15 0.5
-      note 15 0.5
-
-      note 6 0.5
-      note 18 0.5
-      note 3 0.5
-      note 15 0.5
-
-      note (-1) 0.5
-      note (-1) 0.5
-      note 11 0.5
-      note 15 0.5
-
-      note (-2) 0.5
-      note (-2) 0.5
-      note 10 0.5
-      note 15 0.5 ]
+    [ //
+     note 0 0.25;
+     note 0 0.25;
+     note 0 0.25;
+     note 0 0.25;
+     note 0 0.5
+     note 0 0.25;
+     note 0 0.25;
+     note 0 0.25;
+     note 0 0.25;
+     note 0 0.25
+     note 0 0.25;
+     note 0 0.5;
+     
+     note 5 0.25;
+     note 5 0.25;
+     note 5 0.25;
+     note 5 0.25;
+     note 5 0.25
+     note 5 0.25;
+     note 5 0.5;
+     
+     note 3 0.25;
+     note 3 0.25;
+     note 3 0.25;
+     note 3 0.25;
+     note 3 0.25
+     note 3 0.25;
+     note 3 0.5
+     note (-2) 0.5
+     //
+     //
+     note 0 0.25;
+     note 0 0.25;
+     note 0 0.25;
+     note 0 0.25;
+     note 0 0.5
+     note 0 0.25;
+     note 0 0.25;
+     note 0 0.25;
+     note 0 0.25;
+     note 0 0.25
+     note 0 0.25;
+     note 0 0.5;
+     
+     note 5 0.25;
+     note 5 0.25;
+     note 5 0.25;
+     note 5 0.25;
+     note 5 0.25
+     note 5 0.25;
+     note 5 0.5;
+     
+     note 3 0.25;
+     note 3 0.25;
+     note 3 0.25;
+     note 3 0.25;
+     note 3 0.25
+     note 3 0.25;
+     note 3 0.5
+     note (-2) 0.5
+     //
+     //
+     note 0 0.25;
+     note 0 0.25;
+     note 0 0.25;
+     note 0 0.25;
+     note 0 0.5
+     note 0 0.25;
+     note 0 0.25;
+     note 0 0.25;
+     note 0 0.25;
+     note 0 0.25
+     note 0 0.25;
+     note 0 0.5;
+     
+     note 5 0.25;
+     note 5 0.25;
+     note 5 0.25;
+     note 5 0.25;
+     note 5 0.25
+     note 5 0.25;
+     note 5 0.5;
+     
+     note 3 0.25;
+     note 3 0.25;
+     note 3 0.25;
+     note 3 0.25;
+     note 3 0.25
+     note 3 0.25;
+     note 3 0.5
+     note (-2) 0.5
+     //
+     //
+     note 0 0.25;
+     note 0 0.25;
+     note 0 0.25;
+     note 0 0.25;
+     note 0 0.5
+     note 0 0.25;
+     note 0 0.25;
+     note 0 0.25;
+     note 0 0.25;
+     note 0 0.25
+     note 0 0.25;
+     note 0 0.5;
+     
+     note 5 0.25;
+     note 5 0.25;
+     note 5 0.25;
+     note 5 0.25;
+     note 5 0.25
+     note 5 0.25;
+     note 5 0.5;
+     
+     note 3 0.25;
+     note 3 0.25;
+     note 3 0.25;
+     note 3 0.25;
+     note 3 0.25
+     note 3 0.25;
+     note 3 0.5
+     note (-2) 0.5
+     ]
     |> Seq.concat
 
 
@@ -56,8 +141,6 @@ let writeToFile (ms: MemoryStream) =
 
 song
 //|> reverb
-|> Seq.map (fun x ->
-    let x1 = sineWaveShape 1.5 2.5 x
-    saturate ({ Gain = 1.0 }, x1))
+|> Seq.map (waveshaper {Gain=1.5; Factor=2.5})
 |> createWAV
 |> writeToFile

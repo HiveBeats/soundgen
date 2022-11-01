@@ -1,18 +1,23 @@
 module SoundGen.Fx
+
 open Settings
+
 type Effect =
     | Saturator
     | Reverb
 
-type Reverb = { Wet: float; Room: float }
-type Saturator = { Gain: float }
+type ReverbParam = { Wet: float; Room: float }
+type SaturatorParam = { Gain: float }
+type WaveshaperParam = {Gain: float; Factor: float;}
 
-let saturate (param: Saturator, x: float) = tanh (param.Gain * x)
+let saturator (param: SaturatorParam) (x: float) = tanh (param.Gain * x)
 
-let sineWaveShape gain factor x = x + gain * sin (factor * x)
+let waveshaper (param: WaveshaperParam) x =
+    (x + param.Gain * sin (param.Factor * x))
+    |> saturator { Gain = 1.0 }
 
 let reverb (buffer: float seq) =
-    let delayMilliseconds = 500.//((1./8.) * beatDuration) // 500 is half a second
+    let delayMilliseconds = 500. //((1./8.) * beatDuration) // 500 is half a second
 
     let delaySamples =
         (delayMilliseconds * 48.0) |> int // assumes 44100 Hz sample rate
