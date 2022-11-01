@@ -1,6 +1,8 @@
 module SoundGen.Synth
+
 open Settings
 open Oscillator
+open SoundGen.Oscillator
 
 let getHzBySemitones semi =
     pitchStandard * (2. ** (1. / 12.)) ** semi
@@ -32,7 +34,7 @@ let getSemitonesByNote (str: string) =
     (octave - defaultOctave - 1) * 12 + noteShift
 
 
-let freq hz duration =
+let freq hz duration (osc: OscillatorParameter list) =
     let samples =
         seq { 0.0 .. (duration * sampleRate) }
 
@@ -52,10 +54,8 @@ let freq hz duration =
     let output =
         Seq.map
             (fun x ->
-                x
-                |> sinesquareosc hz
-                |> (*) volume
-                )
+                multiosc { Oscillators = osc; Sample = x }
+                |> (*) volume)
             samples
 
     let adsrLength = Seq.length output
@@ -70,5 +70,11 @@ let freq hz duration =
 
 
 let note semitone beats =
-    let hz = getHzBySemitones semitone
-    freq hz (beats * beatDuration)
+    let hz = getHzBySemitones (semitone - 12.)
+
+    freq
+        hz
+        (beats * beatDuration)
+        [ { Osc = Sine; Freq = hz / 4. }
+          { Osc = Saw; Freq = (hz + 1.) }
+          { Osc = Saw; Freq = (hz - 1.3) } ]
