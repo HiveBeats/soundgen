@@ -2,10 +2,10 @@ module SoundGen.PCMWave
 open Settings
 open System.IO
 
-let toInt16Sample sample = sample |> (*) 32767. |> int16
+let private toInt16Sample sample = sample |> (*) 32767. |> int16
 
 
-let pack (d: int16 []) =
+let private pack (d: int16 []) =
     let stream = new MemoryStream()
 
     let writer =

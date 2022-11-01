@@ -18,7 +18,7 @@ type GenerationParameter =
 
 
 
-let pos hz x = (hz * x / sampleRate) % 1.
+let private pos hz x = (hz * x / sampleRate) % 1.
 
 let sineosc hz x =
     x |> (*) (2. * Math.PI * hz / sampleRate) |> sin
